@@ -24,7 +24,7 @@ public class MusicLibrary {
 
     public void scanFolder() {
         cache.clear();
-        addTree(new File("./src/Music/" + name), cache, true);
+        addTree(new File("./Music/" + name), cache, true);
     }
 
     static void addTree(File file, Vector<File> all, boolean recursive) {
@@ -41,7 +41,6 @@ public class MusicLibrary {
 
     public void playSong() {
         Collections.shuffle(cache);
-
         try {
             player.playSong(cache.get(0).toURI().toURL().toString());
         } catch (MalformedURLException e) {

@@ -10,8 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -32,7 +30,7 @@ public class Main extends Application {
         mainGrid.setGridLinesVisible(false);
 
 
-        MusicLibrary.addTree(new File("./src/Music/"), categories, false);
+        MusicLibrary.addTree(new File("Music/"), categories, false);
 
         Player player = new Player();
         int i = 0;
