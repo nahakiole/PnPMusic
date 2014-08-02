@@ -13,17 +13,18 @@ import java.util.*;
 public class MusicLibrary {
 
     private String name;
+    private Player player;
     private Vector<File> cache = new Vector<File>();
 
-    public MusicLibrary(String name) {
+    public MusicLibrary(String name, Player player) {
         this.name = name;
+        this.player = player;
         scanFolder();
     }
 
     public void scanFolder() {
         cache.clear();
         addTree(new File("./src/Music/" + name), cache, true);
-        System.out.println(cache);
     }
 
     static void addTree(File file, Vector<File> all, boolean recursive) {
@@ -31,7 +32,7 @@ public class MusicLibrary {
         if (children != null) {
             for (File child : children) {
                 all.add(child);
-                if (recursive){
+                if (recursive) {
                     addTree(child, all, true);
                 }
             }
@@ -40,16 +41,13 @@ public class MusicLibrary {
 
     public void playSong() {
         Collections.shuffle(cache);
-        Media media = null;
+
         try {
-            media = new Media(cache.get(0).toURI().toURL().toString());
+            player.playSong(cache.get(0).toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-        mediaPlayer.play();
     }
 
     public String getName() {

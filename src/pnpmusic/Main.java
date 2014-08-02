@@ -34,14 +34,16 @@ public class Main extends Application {
 
         MusicLibrary.addTree(new File("./src/Music/"), categories, false);
 
-
+        Player player = new Player();
         int i = 0;
         int e = 0;
+
+
         for (File directory : categories) {
             String category = directory.getName();
             Button button = new Button(category);
 
-            final MusicLibrary musicLibrary = new MusicLibrary(category);
+            final MusicLibrary musicLibrary = new MusicLibrary(category, player);
 
             MusicLibraries.add(musicLibrary);
             button.setOnAction(new EventHandler<ActionEvent>() {
